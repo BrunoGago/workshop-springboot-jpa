@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,6 +33,7 @@ public class User implements Serializable {
 	
 	//Tendo em vista que a classe User e Order tem uma associação (Um cliente tem vários pedidos e um pedido tem um cliente), devemos colocar ambos relacionamentos
 	//nas respectivas classes; No caso de um para muitos, usamos um List, e devemos usar a coleção ArrayList também;
+	@JsonIgnore //anotação para que não ocorra um loop infinito quando chamarmos a aplicação
 	@OneToMany(mappedBy = "client")
 	private List<Order> orders = new ArrayList<>();
 	
