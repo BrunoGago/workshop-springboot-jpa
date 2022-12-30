@@ -67,5 +67,16 @@ public class TestConfig implements CommandLineRunner {
 		
 		//usei para salvar no BD a lista com os dados dos objetos acima (DataBase Seeding)
 		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
+		
+		//relacionando os produtos as categorias
+		p1.getCategories().add(cat2);
+		p2.getCategories().add(cat1);
+		p2.getCategories().add(cat3);
+		p3.getCategories().add(cat3);
+		p4.getCategories().add(cat3);
+		p5.getCategories().add(cat2);
+		
+		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
+		
 	}
 }
