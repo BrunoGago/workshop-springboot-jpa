@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import com.educandoweb.course.entities.pk.OrderItemPk;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -18,7 +19,8 @@ public class OrderItem implements Serializable{
 	
 	//É uma chave composta, por isso usei o EmbeddedId ao invés de Id
 	@EmbeddedId
-	private OrderItemPk id;
+	private OrderItemPk id= new OrderItemPk();
+	
 	private Integer quantity;
 	private Double price;
 	
@@ -35,6 +37,8 @@ public class OrderItem implements Serializable{
 	}
 	
 	//tendo em vista que para o mundo exterior o produto e pedido serão mostrados separadamente, um em cada campo, devemos usar os metodos get e set para representá-los
+	//O getOrder estava chamando o pedido associado a esse item de pedido, gerando um loop
+	@JsonIgnore
 	public Order getOrder() {
 		return id.getOrder();
 	}
