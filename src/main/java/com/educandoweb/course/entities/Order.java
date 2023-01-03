@@ -106,6 +106,15 @@ public class Order implements Serializable{
 		return items;
 	}
 	
+	//Padrão Java EE (usamos get para o prefixo do método)
+	public Double getTotal() {
+		double sum = 0.0;
+		for(OrderItem x : items) {
+			sum += x.getSubTotal();
+		}
+		return sum;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
