@@ -30,4 +30,9 @@ public class UserService {
 		//retorna o obj do tipo user, dentro do optional
 		return obj.get();
 	}
+	
+	//Operação básica para salvar um obj da classe User no BD
+	public User insert(User obj) {
+		return repository.save(obj);
+	}
 }
