@@ -40,14 +40,12 @@ public class Order implements Serializable{
 	@JoinColumn(name = "client_id")
 	private User client;
 
-	
 	@OneToMany(mappedBy = "id.order")
 	private Set<OrderItem> items = new HashSet<>();
 	
 	public Order() {
 		
-	}
-	
+	}	
 	
 	//No caso do OrderStatus, tendo em vista que estamos acessando a classe, não passei o tipo Integer
 	public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
@@ -110,6 +108,5 @@ public class Order implements Serializable{
 			return false;
 		Order other = (Order) obj;
 		return Objects.equals(id, other.id);
-	}
-	
+	}	
 }
